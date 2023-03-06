@@ -59,14 +59,10 @@ col3.write("#### Attackers")
 col3.write(f"#### {attackers}")
 col4.write("#### Origin")
 col4.write(f"#### {countries}")
-st.write("#### Which hosts are most attacked?")
 
 #lets first create a drop down for the hosts
 hosts = cleaned_df.host.unique()
-filt1,filt2 = st.columns(2)
-focus_host = filt1.selectbox('Which host you want to drill down?',
-                             hosts,index=0)
-filter_host_df = cleaned_df[cleaned_df.host == focus_host]
+filter_host_df = cleaned_df[cleaned_df.host == hosts[0]]
 #Which month, day, hour and week the max attack happend for the host 
 
 #Lets get the grouped dataframes for the filtered dataframe
@@ -75,7 +71,7 @@ day_grp = group_by_col(filter_host_df,'day_week')
 hour_grp = group_by_col(filter_host_df,'incident_hour')
 week_grp = group_by_col(filter_host_df,'week_year')
 
-st.write("#### When the host is getting attacked the most")
+st.write(f"#### Attack details of the {hosts[0]}")
 col5,col6,col7,col8 = st.columns(4)
 #populating max month
 max_month= month_grp.iloc[0,0] 
