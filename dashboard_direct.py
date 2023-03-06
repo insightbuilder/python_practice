@@ -123,5 +123,6 @@ st.line_chart(pivot_hm_grp)
 
 st.write("### Thanks for viewing the dashboard")
 #printing the dataframe
-st.dataframe(cleaned_df)
+test = cleaned_df.astype(str)
+st.dataframe(test)
 
