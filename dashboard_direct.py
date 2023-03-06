@@ -62,7 +62,8 @@ col4.write(f"#### {countries}")
 
 #lets first create a drop down for the hosts
 hosts = cleaned_df.host.unique()
-filter_host_df = cleaned_df[cleaned_df.host == hosts[0]]
+focus_host = hosts[0]
+filter_host_df = cleaned_df[cleaned_df.host == focus_host]
 #Which month, day, hour and week the max attack happend for the host 
 
 #Lets get the grouped dataframes for the filtered dataframe
