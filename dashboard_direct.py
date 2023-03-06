@@ -119,10 +119,21 @@ col9.dataframe(pivot_hm_grp)
 col10.write('#### Source DF')
 col10.dataframe(host_month_grp)
 st.write("#### Changes in the attack counts each month over the year")
-st.line_chart(pivot_hm_grp)
-
+c1,c2,c3 = st.columns(3)
+c1.write(f"#### {hosts[0]}")
+px1 = px.line(host_month_grp[host_month_grp.host == hosts[0]],
+              x='month_name',y='src')
+c1.plotly_chart(px1,use_container_width=True)
+c2.write(f"#### {hosts[1]}")
+px2 =px.line(host_month_grp[host_month_grp.host == hosts[1]],
+              x='month_name',y='src')
+c2.plotly_chart(px2,use_container_width=True)
+c3.write(f"#### {hosts[2]}")
+px3 =px.line(host_month_grp[host_month_grp.host == hosts[2]],
+              x='month_name',y='src')
+c3.plotly_chart(px3,use_container_width=True)
 st.write("### Thanks for viewing the dashboard")
 #printing the dataframe
-test = cleaned_df.astype(str)
-st.dataframe(test)
+#test = cleaned_df.astype(str)
+#st.write(cleaned_df)
 
