@@ -68,10 +68,11 @@ filter_host_df = cleaned_df[cleaned_df.host == focus_host]
 
 #Lets get the grouped dataframes for the filtered dataframe
 month_grp = group_by_col(filter_host_df,'month_name')
+st.dataframe(month_grp)
 day_grp = group_by_col(filter_host_df,'day_week')
 hour_grp = group_by_col(filter_host_df,'incident_hour')
 week_grp = group_by_col(filter_host_df,'week_year')
-
+print(week_grp)
 st.write(f"#### Attack details of the {hosts[0]}")
 col5,col6,col7,col8 = st.columns(4)
 #populating max month
