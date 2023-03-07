@@ -16,14 +16,15 @@ with open('style.css') as f:
 
 #lets fill in the overview of the data
 st.markdown('## Honeypot Hacking Dashboard ')
-st.markdown('##### Loading the 451K rows and 12 columns of data and cleaning it')
-cleaned_df = clean_hackdata('hack_data.csv') 
-
+st.markdown('##### Loading the 40K rows and 15 columns of data and cleaning it')
+#Reduced the count of the rows to speed up the loading process
+cleaned_df = clean_hackdata('sample_data.csv')
 #creating individual columns in streamlit
 #st.write("### The visual overview who and what?")
 host_grp = group_by_col(cleaned_df,'host')
+#st.dataframe(host_grp)
 country_grp = group_by_col(cleaned_df,"country")
-
+#st.dataframe(country_grp)
 #lets get some stacks going
 country_hst_grp = group_two_col(cleaned_df,'host','country')
 country_top_10 = list(country_grp['country'].values)
@@ -68,11 +69,11 @@ filter_host_df = cleaned_df[cleaned_df.host == focus_host]
 
 #Lets get the grouped dataframes for the filtered dataframe
 month_grp = group_by_col(filter_host_df,'month_name')
-st.dataframe(month_grp)
+#st.dataframe(month_grp)
 day_grp = group_by_col(filter_host_df,'day_week')
 hour_grp = group_by_col(filter_host_df,'incident_hour')
 week_grp = group_by_col(filter_host_df,'week_year')
-print(week_grp)
+#print(week_grp)
 st.write(f"#### Attack details of the {hosts[0]}")
 col5,col6,col7,col8 = st.columns(4)
 #populating max month
@@ -107,6 +108,7 @@ col8.write(f"#### {max_hour_count}")
 host_week_grp = group_two_col(cleaned_df, 'host','week_year')
 host_week_filter = host_week_grp[host_week_grp.host == focus_host]   
 st.write(f"#### Attacks per week on {focus_host}")
+#st.dataframe(host_week_filter)
 st.bar_chart(host_week_filter,x='week_year',y='src')
 
 #get the data grouped on hosts and months

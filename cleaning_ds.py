@@ -11,6 +11,7 @@ def clean_hackdata(raw_csv_file):
     
     honey_pot_data = pd.read_csv(raw_csv_file)
     null_filled_data = honey_pot_data.copy()
+    print(null_filled_data)
     #filling the null values with unknown
     for col in ['type','country','cc','locale','localeabbr','postalcode']:
         null_filled_data[col].fillna('unknown',axis=0,inplace=True)
@@ -35,7 +36,7 @@ def clean_hackdata(raw_csv_file):
     null_filled_data['incident_hour'] = null_filled_data.datetime_obj. \
                 apply(lambda x: x.hour)
     #dropping the column
-    null_filled_data.drop(['datetime','Unnamed: 15'],inplace=True,axis=1)
+    null_filled_data.drop(['datetime','Unnamed: 0'],inplace=True,axis=1)
     #removing the rows that have any null values
     null_filled_data.dropna(axis=0,inplace=True)
     #return the dataframe
